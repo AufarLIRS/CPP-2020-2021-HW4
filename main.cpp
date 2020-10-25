@@ -20,24 +20,20 @@ void PrintAllPermutations(std::string str)
     std::cout << str << std::endl;
   } while (std::next_permutation(str.begin(), str.end()));
 }
-void TwoMistakes()
+int FindDifference(int n)
 {
   std::map<int, int> difference;
-  int n;
-  std::cout << "Введите изначальное количество ошибок:";
-  std::cin >> n;
-  std::cout << std::endl;
   int a[n];
   int b[n - 1];
-  int c[n - 2];
-  std::cout << "Введите номера ошибок, выданных компилятором в первый раз:";
+  int numberOfException = 0;
+  std::cout << std::endl << "Номера ошибок:";
   for (int i = 0; i < n; i++)
   {
     std::cin >> a[i];
     int key = a[i];
     difference[key]++;
   }
-  std::cout << std::endl << "Введите номера ошибок, выданных компилятором во второй раз:";
+  std::cout << std::endl << "Номера ошибок:";
   for (int i = 0; i < n - 1; i++)
   {
     std::cin >> b[i];
@@ -49,33 +45,21 @@ void TwoMistakes()
     int key = a[i];
     if (difference[key] == 1)
     {
-      std::cout << "Номер исчезнувшей ошибки после внесения первого исправления - " << key << std::endl;
+      numberOfException = key;
       break;
     }
   }
-  difference.clear();
-  for (int i = 0; i < n - 1; i++)
-  {
-    int key = b[i];
-    difference[key]++;
-  }
-  std::cout << std::endl << "Введите номера ошибок, выданных компилятором в третий раз:";
-  for (int i = 0; i < n - 2; i++)
-  {
-    std::cin >> c[i];
-    int key = c[i];
-    difference[key]--;
-  }
+  return numberOfException;
+}
+void TwoMistakes()
+{
+  int n;
+  std::cout << "Введите изначальное количество ошибок:";
+  std::cin >> n;
   std::cout << std::endl;
-  for (int i = 0; i < n - 1; i++)
-  {
-    int key = b[i];
-    if (difference[key] == 1)
-    {
-      std::cout << "Номер исчезнувшей ошибки после внесения второго исправления - " << key << std::endl;
-      break;
-    }
-  }
+  std::cout << "Номер ошибки, исчезнувшей после первого исправления - " << FindDifference(n);
+  n--;
+  std::cout << "Номер ошибки, исчезнувшей после второго исправления - " << FindDifference(n);
 }
 
 int main()
