@@ -22,47 +22,57 @@ void PrintAllPermutations(std::string str)
 }
 void TwoMistakes()
 {
-  std::map<int, int> x;
+  std::map<int, int> difference;
   int n;
+  std::cout << "Введите изначальное количество ошибок:";
   std::cin >> n;
+  std::cout << std::endl;
   int a[n];
-  int b[n];
-  int c[n];
+  int b[n - 1];
+  int c[n - 2];
+  std::cout << "Введите номера ошибок, выданных компилятором в первый раз:";
   for (int i = 0; i < n; i++)
   {
     std::cin >> a[i];
-    x[a[i]]++;
+    int key = a[i];
+    difference[key]++;
   }
-  n--;
-  for (int i = 0; i < n; i++)
+  std::cout << std::endl << "Введите номера ошибок, выданных компилятором во второй раз:";
+  for (int i = 0; i < n - 1; i++)
   {
     std::cin >> b[i];
-    x[b[i]]--;
+    int key = b[i];
+    difference[key]--;
   }
-  for (int i = 0; i < n + 1; i++)
+  for (int i = 0; i < n; i++)
   {
-    if (x[a[i]])
+    int key = a[i];
+    if (difference[key] == 1)
     {
-      std::cout << a[i] << std::endl;
+      std::cout << "Номер исчезнувшей ошибки после внесения первого исправления - " << key << std::endl;
       break;
     }
   }
-  x.clear();
-  for (int i = 0; i < n; i++)
+  difference.clear();
+  for (int i = 0; i < n - 1; i++)
   {
-    x[b[i]]++;
+    int key = b[i];
+    difference[key]++;
   }
-  n--;
-  for (int i = 0; i < n; i++)
+  std::cout << std::endl << "Введите номера ошибок, выданных компилятором в третий раз:";
+  for (int i = 0; i < n - 2; i++)
   {
     std::cin >> c[i];
-    x[c[i]]--;
+    int key = c[i];
+    difference[key]--;
   }
-  for (int i = 0; i < n + 1; i++)
+  std::cout << std::endl;
+  for (int i = 0; i < n - 1; i++)
   {
-    if (x[b[i]])
+    int key = b[i];
+    if (difference[key] == 1)
     {
-      std::cout << b[i] << std::endl;
+      std::cout << "Номер исчезнувшей ошибки после внесения второго исправления - " << key << std::endl;
       break;
     }
   }
