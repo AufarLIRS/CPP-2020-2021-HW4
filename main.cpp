@@ -2,46 +2,44 @@
 #include <set>
 #include <algorithm>
 
-using namespace std;
-
 void n1()
 {
-  string name;
-  cin >> name;
-  set<char> a(name.begin(), name.end());
+  std::string name;
+  std::cin >> name;
+  std::set<char> a(name.begin(), name.end());
   if (a.size() % 2 == 0)
   {
-    cout << "CHAT WITH HER!" << endl;
+    std::cout << "CHAT WITH HER!" << std::endl;
   }
   else
   {
-    cout << "IGNORE HIM!" << endl;
+    std::cout << "IGNORE HIM!" << std::endl;
   }
 }
 
 void n2()
 {
   short n;
-  cin >> n;
-  multiset<short> first;
-  multiset<short> second;
-  multiset<short> third;
+  std::cin >> n;
+  std::multiset<short> first;
+  std::multiset<short> second;
+  std::multiset<short> third;
   for (short i = 0; i < n; i++)
   {
     short a;
-    cin >> a;
+    std::cin >> a;
     first.insert(a);
   }
   for (short i = 0; i < n - 1; i++)
   {
     short a;
-    cin >> a;
+    std::cin >> a;
     second.insert(a);
   }
   for (short i = 0; i < n - 2; i++)
   {
     short a;
-    cin >> a;
+    std::cin >> a;
     third.insert(a);
   }
   // search for first dissapeared number
@@ -49,7 +47,7 @@ void n2()
   {
     if (second.count(*it) < first.count(*it))
     {
-      cout << *it << endl;
+      std::cout << *it << std::endl;
       break;
     }
   }
@@ -58,7 +56,7 @@ void n2()
   {
     if (third.count(*it) < second.count(*it))
     {
-      cout << *it << endl;
+      std::cout << *it << std::endl;
       break;
     }
   }
@@ -66,11 +64,11 @@ void n2()
 
 void n3()
 {
-  string str = "abcd";
-  cout << str << endl;
+  std::string str = "abcd";
+  std::cout << str << std::endl;
   while (next_permutation(str.begin(), str.end()))
   {
-    cout << str << endl;
+    std::cout << str << std::endl;
   }
 }
 
