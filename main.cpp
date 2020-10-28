@@ -11,7 +11,6 @@ void Task1()
   {
     letters.insert(l);
   }
-  std::cout << letters.size() << std::endl;
   if (letters.size() % 2 == 0)
   {
     std::cout << "CHAT WITH HER!" << std::endl;
