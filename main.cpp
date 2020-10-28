@@ -13,7 +13,10 @@ int main()
   // First task
   std::string input;
   std::cin >> input;
-  if (input.size() % 2 == 0)
+  std::set<char> set;
+  for (unsigned i = 0; i < input.size(); i++)
+    set.insert(input[i]);
+  if (set.size() % 2 == 0)
     std::cout << "CHAT WITH HER!" << '\n';
   else
     std::cout << "IGNORE HIM!" << '\n';
@@ -25,7 +28,6 @@ int main()
   std::multiset<int> secondset;
   std::multiset<int> thirdset;
   std::vector<int> result(2);
-  std::vector<int>::iterator it;
 
   for (int i = 0; i < count; i++)
   {
@@ -46,9 +48,8 @@ int main()
     thirdset.insert(temp);
   }
   //Обошёлся без второго массива, но вводить всё-таки нужно
-  it = std::set_difference(firstset.begin(), firstset.end(), thirdset.begin(), thirdset.end(), result.begin());
-  for (it = result.begin(); it != result.end(); ++it)
-    std::cout << *it << std::endl;
+  std::set_difference(firstset.begin(), firstset.end(), thirdset.begin(), thirdset.end(), result.begin());
+  std::cout << result[0] << std::endl << result[1] << std::endl;
 
   // Third task
   std::string s = "abcd";
