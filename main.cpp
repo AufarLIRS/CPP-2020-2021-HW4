@@ -4,7 +4,6 @@
 #include <map>
 #include <vector>
 #include <QRandomGenerator64>
-#include <algorithm>
 
 // Task 1 - проверка никнейма.
 void findGirl(std::string nickname)
