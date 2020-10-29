@@ -1,18 +1,18 @@
+#include <QRandomGenerator64>
 #include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <map>
+#include <unordered_set>
 #include <vector>
-#include <QRandomGenerator64>
 
 // Task 1 - проверка никнейма.
 void findGirl(std::string nickname)
 {
   std::cout << "Enter her/his nickname: ";
   std::cin >> nickname;
-  std::map<char, char> findNumberOfLetters;
-  for (auto it = nickname.begin(); it != nickname.end(); it++)
-    findNumberOfLetters[*it] = *it;
+  std::unordered_set<char> findNumberOfLetters;
+  for (unsigned int i = 0; i < nickname.size(); i++)
+    findNumberOfLetters.insert(nickname[i]);
   findNumberOfLetters.size() % 2 == 0 ? std::cout << "CHAT WITH HER!" << std::endl :
                                         std::cout << "IGNORE HIM!" << std::endl;
 }
@@ -28,8 +28,11 @@ void comparisonOfArrays()
   for (int i = 0; i < numbers; i++)
   {
     std::uniform_int_distribution<int> distribution(1, 125);
-    errors_[i] = distribution(*QRandomGenerator::global());
-    errors_.push_back(errors_[i]);
+    std::generate(errors_.begin(), errors_.end(),
+                  [&]() { return errors_[i] = distribution(*QRandomGenerator::global()); });
+  }
+  for (int i = 0; i < numbers; i++)
+  {
     std::cout << errors_[i] << ' ';
   }
   std::cout << std::endl;
