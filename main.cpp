@@ -35,9 +35,9 @@ void Task2()
   {
     int a;
     std::cin >> a;
-    if (FirstErrors.find(a) != FirstErrors.end())
+    if (auto w = FirstErrors.find(a); w != FirstErrors.end())
     {
-      FirstErrors.erase(FirstErrors.find(a));
+      FirstErrors.erase(w);
     }
     SecondErrors.insert(a);
   }
@@ -45,9 +45,9 @@ void Task2()
   {
     int a;
     std::cin >> a;
-    if (SecondErrors.find(a) != SecondErrors.end())
+    if (auto w = SecondErrors.find(a); w != SecondErrors.end())
     {
-      SecondErrors.erase(SecondErrors.find(a));
+      SecondErrors.erase(w);
     }
   }
   std::cout << *FirstErrors.begin() << std::endl;
