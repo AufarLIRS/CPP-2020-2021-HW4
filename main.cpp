@@ -19,25 +19,24 @@ void Permutations(string str)
   while (next_permutation(str.begin(), str.end()))
     cout << str << endl;
 }
-vector<int> FindException(int n, int a[], int b[], int c[])
+vector<int> FindException(int n, vector<int> a, vector<int> b, vector<int> c)
 {
-  vector<int> vec;
+  vector<int> vec_out_exc;
   int exc;
-  int key;
   map<int, int> mp;
-  for (int i = 0; i < n; i++)
+  for (int num : a)
   {
-    key = a[i];
+    int key = num;
     mp[key]++;
   }
-  for (int i = 0; i < n - 1; i++)
+  for (int num : b)
   {
-    key = b[i];
+    int key = num;
     mp[key]--;
   }
-  for (int i = 0; i < n; i++)
+  for (int num : a)
   {
-    key = a[i];
+    int key = num;
     if (mp[key] == 1)
     {
       exc = key;
@@ -45,29 +44,29 @@ vector<int> FindException(int n, int a[], int b[], int c[])
     }
   }
 
-  vec.push_back(exc);
+  vec_out_exc.push_back(exc);
   mp.clear();
-  for (int i = 0; i < n - 1; i++)
+  for (int num : b)
   {
-    key = b[i];
+    int key = num;
     mp[key]++;
   }
-  for (int i = 0; i < n - 2; i++)
+  for (int num : c)
   {
-    key = c[i];
+    int key = num;
     mp[key]--;
   }
-  for (int i = 0; i < n - 1; i++)
+  for (int num : b)
   {
-    key = b[i];
+    int key = num;
     if (mp[key] == 1)
     {
       exc = key;
       break;
     }
   }
-  vec.push_back(exc);
-  return vec;
+  vec_out_exc.push_back(exc);
+  return vec_out_exc;
 }
 int main()
 {
@@ -80,9 +79,10 @@ int main()
   int n;
   cout << "Enter count exceptions: ";
   cin >> n;
-  int* a = new int[n];
-  int* b = new int[n - 1];
-  int* c = new int[n - 2];
+  vector<int> a, b, c;
+  a.resize(n);
+  b.resize(n - 1);
+  c.resize(n - 2);
   cout << "Enter line exceptions" << endl;
   for (int i = 0; i < n; i++)
   {
