@@ -2,58 +2,56 @@
 #include <set>
 #include <algorithm>
 #include <vector>
-using namespace std;
+
 
 int main()
 {
     //task 1
-    set <char> a;
-    string name;
-    cin >> name;
+    std::set <char> set;
+    std::string name;
+    std::cin >> name;
     for(unsigned i = 0; i < name.size(); i++) {
-        a.insert(name[i]);
+        set.insert(name[i]);
     }
-    if(a.size() % 2 != 0) {
-        cout << "IGNORE HIM!" << endl;
+    if(set.size() % 2 != 0) {
+        std::cout << "IGNORE HIM!" << std::endl;
     }
     else{
-        cout << "CHAT WITH HER!" << endl;
+        std::cout << "CHAT WITH HER!" << std::endl;
     }
 
     //task 2
-    int size;
-    cin >> size;
+    int n,temp;
+        std::cin >> n;
+        long a=0,b=0,c=0;
+        for(int i=0;i<n;i++){
+            std::cin >> temp;
+            a= a + temp;
+        }
+        for(int i=0;i<n-1;i++){
+            std::cin >> temp;
+            b+=temp;
+        }
 
-    multiset<int> set1;
-    for(int i = 0; i < size; i++){
-        int number;
-        cin >> number;
-        set1.insert(number);
-    }
-    multiset<int> set2;
-    for(int i = 0; i < size-1; i++){
-        int number;
-        cin >> number;
-        set2.insert(number);
-    }
-    multiset<int> set3;
-    for(int i = 0; i < size-2; i++){
-        int number;
-        cin >> number;
-        set3.insert(number);
-    }
-    vector<int> answer(2);
-    set_difference(set1.begin(), set1.end(),set3.begin(),set3.end(),answer.begin());
-    cout << answer[0] << endl;
-    cout << answer[1] << endl;
+        for(int i=0;i<n-2;i++){
+            std::cin >> temp;
+            c+=temp;
+        }
+        std::cout << a-b << std::endl;
+        std::cout << b-c << std::endl;
+
+
+
+
 
 
     //task 3
     char abcd[] = "abcd";
-    do
-    cout << abcd << '\t';
-    while (next_permutation(abcd, abcd + 4));
-    cout << endl;
+    do {
+    std::cout << abcd << '\t';
+    }
+    while (std::next_permutation(abcd, abcd + 4));
+    std::cout << std::endl;
 
     return 0;
 }
