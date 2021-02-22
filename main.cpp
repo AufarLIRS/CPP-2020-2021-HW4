@@ -13,12 +13,17 @@ using namespace std;
 //    return (0);
 //}
 
-static bool findInArr(int *arr, int num, int n)
+static bool findInArr(std::vector<int> &arr, int num)
 {
+    int n = arr.size();
+
     for (int i = 0; i < n; ++i)
     {
         if (arr[i] == num)
+        {
+            arr.erase(arr.begin() + i);
             return (1);
+        }
     }
     return (0);
 }
@@ -40,13 +45,15 @@ static bool findInArr(int *arr, int num, int n)
 //        cout << ignore << endl;
 //}
 
-static void task2(int *errors1, int *errors2, int *errors3, int n)
+static void task2(std::vector<int> &errors1, std::vector<int> &errors2, std::vector<int> &errors3)
 {
+    int n = errors1.size();
     int answer[2];
+    std::vector<int> errors2copy = errors2;
 
     for (int i = 0; i < n; ++i)
     {
-        if (findInArr(errors2, errors1[i], n - 1) == 0)
+        if (findInArr(errors2copy, errors1[i]) == 0)
         {
             answer[0] = errors1[i];
             break;
@@ -55,7 +62,7 @@ static void task2(int *errors1, int *errors2, int *errors3, int n)
 
     for (int i = 0; i < n - 1; ++i)
     {
-        if (findInArr(errors3, errors2[i], n - 2) == 0)
+        if (findInArr(errors3, errors2[i]) == 0)
         {
            answer[1] = errors2[i];
            break;
@@ -117,29 +124,33 @@ int main()
 {
 //    string inputStr;
 //    int n;
+//    int c;
 
 //    getline(cin, inputStr);
 //    task1(inputStr);
 
 //    cin >> n;
 
-//    int errors1[n];
-//    int errors2[n - 1];
-//    int errors3[n - 2];
+//    std::vector<int> errors1;
+//    std::vector<int> errors2;
+//    std::vector<int> errors3;
 
 //    for (int i = 0; i < n; ++i)
 //    {
-//        cin >> errors1[i];
+//        cin >> c;
+//        errors1.push_back(c);
 //    }
 //    for (int i = 0; i < n - 1; ++i)
 //    {
-//        cin >> errors2[i];
+//        cin >> c;
+//        errors2.push_back(c);
 //    }
 //    for (int i = 0; i < n - 2; ++i)
 //    {
-//        cin >> errors3[i];
+//        cin >> c;
+//        errors3.push_back(c);
 //    }
-//    task2(errors1, errors2, errors3, n);
+//    task2(errors1, errors2, errors3);
     task3();
 
     return 0;
